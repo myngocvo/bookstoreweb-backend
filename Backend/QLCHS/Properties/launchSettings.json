@@ -12,8 +12,8 @@
     "QLCHS": {
       "commandName": "Project",
       "dotnetRunMessages": true,
-      "launchBrowser": true,
-      "launchUrl": "swagger",
+      "launchBrowser": false, // Tắt việc mở trình duyệt tự động
+      "launchUrl": "", // Để trống URL khởi chạy
       "applicationUrl": "https://localhost:7009",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
@@ -21,8 +21,8 @@
     },
     "IIS Express": {
       "commandName": "IISExpress",
-      "launchBrowser": true,
-      "launchUrl": "swagger",
+      "launchBrowser": false, // Tắt việc mở trình duyệt tự động
+      "launchUrl": "", // Để trống URL khởi chạy
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

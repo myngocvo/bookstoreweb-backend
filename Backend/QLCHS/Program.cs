@@ -1,23 +1,28 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using QLCHS.Entities;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
+// Thêm các dịch vụ vào container.
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+// Cấu hình Swagger/OpenAPI
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<QLBANSACHContext>(option => option.UseSqlServer
-    (builder.Configuration.GetConnectionString("QLBANSACH")));
-builder.Services.AddCors(p => p.AddPolicy("MyCors", build =>
+
+// Cấu hình Entity Framework Core để sử dụng SQL Server với chuỗi kết nối từ cấu hình
+builder.Services.AddDbContext<QLBANSACHContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("QLBANSACH")));
+
+// Cấu hình CORS để cho phép bất kỳ nguồn gốc, phương thức và tiêu đề
+builder.Services.AddCors(options => options.AddPolicy("MyCors", builder =>
 {
-    build.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
+    builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
 }));
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Cấu hình pipeline xử lý HTTP
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
